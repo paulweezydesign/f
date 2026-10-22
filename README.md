@@ -1,67 +1,64 @@
-# [Start Bootstrap - Full Width Pics](https://startbootstrap.com/template/full-width-pics/)
+# paulweezydesign/f
 
-[Full Width Pics](https://startbootstrap.com/template/full-width-pics/) is an HTML starter template for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/). This template features numerous full width background image content sections.
+A static-site starting point based on Start Bootstrap's **Full Width Pics v5.0.3**, using Pug, SCSS, JavaScript, and Bootstrap 5.1.0. The existing template content is retained; agency branding and deployment are separate work.
 
-## Preview
+## Prerequisites
 
-[![Full Width Pics Preview](https://assets.startbootstrap.com/img/screenshots/templates/full-width-pics.png)](https://startbootstrap.github.io/startbootstrap-full-width-pics/)
+- Node.js and npm (verified with Node.js 22.23.2 and npm 10.9.8)
+- Git to clone the repository
 
-**[View Live Preview](https://startbootstrap.github.io/startbootstrap-full-width-pics/)**
+## Getting started
 
-## Status
+```sh
+git clone https://github.com/paulweezydesign/f.git
+cd f
+npm ci
+npm run build
+npm start
+```
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-full-width-pics/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-full-width-pics.svg)](https://www.npmjs.com/package/startbootstrap-full-width-pics)
-[![dependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-full-width-pics/status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-full-width-pics)
-[![devDependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-full-width-pics/dev-status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-full-width-pics?type=dev)
+`npm ci` installs the versions in `package-lock.json`. `npm start` rebuilds the site, starts BrowserSync, and watches source files for changes. Open the local address printed in the terminal; stop the preview with Ctrl+C.
 
-## Download and Installation
+The template uses external image services and a Bootstrap JavaScript CDN, so a fully rendered preview requires network access.
 
-To begin using this template, choose one of the following options to get started:
+## File structure
 
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template/full-width-pics/)
-* Install via npm: `npm i startbootstrap-full-width-pics`
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-full-width-pics.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-full-width-pics)
+```text
+src/
+  pug/index.pug       Page markup
+  scss/styles.scss    Styles, including Bootstrap imports
+  js/scripts.js       Browser-side JavaScript
+  assets/             Static assets, including the favicon
+scripts/              Build, rendering, and preview tooling
+dist/                 Generated HTML, CSS, JavaScript, and assets
+package.json          Project metadata, scripts, and pinned dependencies
+package-lock.json     Locked dependency tree
+LICENSE               Original MIT license and copyright notice
+```
 
-## Usage
+Edit `src/`, not `dist/`. The build scripts compile or copy source files into `dist/`. Generated output is kept in version control to preserve the repository's existing distribution layout: run `npm run build` and review and commit intentional `dist/` changes alongside source changes. Builds regenerate attribution banners with the current year.
 
-### Basic Usage
+## Commands
 
-After downloading, simply edit the HTML and CSS files included with `dist` directory. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+| Command | Purpose |
+| --- | --- |
+| `npm run build` | Clean and rebuild all output in `dist/` |
+| `npm run build:pug` | Compile Pug pages to HTML |
+| `npm run build:scss` | Compile SCSS to CSS |
+| `npm run build:scripts` | Copy JavaScript and generate its attribution banner |
+| `npm run build:assets` | Copy static assets |
+| `npm run clean` | Remove generated contents of `dist/` |
+| `npm start` | Build, serve, watch, and reload the preview |
+| `npm run start:debug` | Build and run the debug preview |
 
-### Advanced Usage
+There is no dedicated automated test or lint suite. Before submitting changes, run a clean dependency install and build, preview the site, and check that the page, stylesheet, script, and favicon are served successfully. Do not upgrade dependencies as part of routine scaffold changes.
 
-Clone the source files of the theme and navigate into the theme's root directory. Run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `package.json` file to see which scripts are included.
+## Repository policy
 
-#### npm Scripts
+This is a private npm package (`private: true` prevents accidental npm publication; it does not control GitHub visibility). The package name, title, version, author, contributors, and homepage retain template provenance and support generated attribution banners; they do not identify a deployed agency site. The repository metadata points to this project rather than the upstream template.
 
-* `npm run build` builds the project * this builds assets, HTML, JS, and CSS into `dist`
-* `npm run build:assets` copies the files in the `src/assets/` directory into `dist`
-* `npm run build:pug` compiles the Pug located in the `src/pug/` directory into `dist`
-* `npm run build:scripts` brings the `src/js/scripts.js` file into `dist`
-* `npm run build:scss` compiles the SCSS files located in the `src/scss/` directory into `dist`
-* `npm run clean` deletes the `dist` directory to prepare for rebuilding the project
-* `npm run start:debug` runs the project in debug mode
-* `npm start` or `npm run start` runs the project, launches a live preview in your default browser, and watches for changes made to files in `src`
+Keep dependencies, local `.env` files, and npm debug logs out of version control. A sanitized `.env.example` may be committed if configuration is introduced later. Do not include secrets in it.
 
-You must have npm installed in order to use this build environment.
+## Attribution
 
-## About
-
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
-
-* <https://startbootstrap.com>
-* <https://twitter.com/SBootstrap>
-
-Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
-
-* <https://davidmiller.io>
-* <https://twitter.com/davidmillerhere>
-* <https://github.com/davidtmiller>
-
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
-
-## Copyright and License
-
-Copyright 2013-2021 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-full-width-pics/blob/master/LICENSE) license.
+Based on [Start Bootstrap — Full Width Pics](https://startbootstrap.com/template/full-width-pics), originally created by Start Bootstrap and David Miller. The original copyright notice and MIT license are preserved in [LICENSE](LICENSE).
