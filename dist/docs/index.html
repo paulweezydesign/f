@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Learn to build, customize, and publish the Full Width Pics static template in paulweezydesign/f." />
+        <title>Documentation overview | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">Documentation overview</h1>
+                    <p class="lead">This site documents the Full Width Pics static landing-page template in paulweezydesign/f. It is not documentation for a backend service or a separate application.</p>
+                    <h2 id="workflow">Source and build workflow</h2>
+                    <p>
+                        Edit Pug pages, SCSS styles, JavaScript, and assets under
+                        <code>src/</code>
+                        . The build generates publishable HTML, CSS, JavaScript, and assets under
+                        <code>dist/</code>
+                        . Generated files are tracked in this repository, but rebuilding replaces direct edits to them.
+                    </p>
+                    <pre class="bg-light p-3"><code>npm ci
+npm run build</code></pre>
+                    <h2 id="guides">Choose a guide</h2>
+                    <ul>
+                        <li>
+                            <a href="getting-started.html">Getting started</a>
+                            : install dependencies, preview locally, and create the publishable output.
+                        </li>
+                        <li>
+                            <a href="api-reference.html">API reference</a>
+                            : understand the available build commands and source/output interfaces; there is no public application API.
+                        </li>
+                        <li>
+                            <a href="configuration.html">Configuration</a>
+                            : customize content, styles, metadata, and assets in their source files.
+                        </li>
+                        <li>
+                            <a href="security.html">Security</a>
+                            : review what goes into a publicly served static site and how to work with the development tools.
+                        </li>
+                        <li>
+                            <a href="migration.html">Migration</a>
+                            : move direct output edits back into maintained source without inventing release history.
+                        </li>
+                    </ul>
+                    <h2 id="publishing">Publish the generated site</h2>
+                    <p>
+                        Publish the entire
+                        <code>dist/</code>
+                        directory to your static host, preserving its directory structure. The documentation entry is
+                        <code>docs/index.html</code>
+                        within that output. Documentation links are relative, so they do not require a particular hostname or root path.
+                    </p>
+                    <p>Hosting-account setup and automatic deployment are not included in this repository. Preview the generated files before replacing an existing deployment.</p>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

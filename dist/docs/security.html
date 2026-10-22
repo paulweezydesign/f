@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Contributor precautions for public static output, dependencies, external assets, and local previews." />
+        <title>Security best practices | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">Security best practices</h1>
+                    <p>These are contributor practices for this static template, not a security certification or an audit of its dependencies. There is no application authentication layer in this repository.</p>
+                    <h2 id="public-output">Treat output as public</h2>
+                    <p>
+                        Review everything in
+                        <code>dist/</code>
+                        before publishing. Do not put passwords, private keys, access tokens, or confidential material in Pug variables, JavaScript, CSS, or assets. The build copies the assets and JavaScript directories; it does not provide a secret-management boundary.
+                    </p>
+                    <p>
+                        Publish the generated
+                        <code>dist/</code>
+                        directory, not the repository root. Keep private deployment configuration outside public output and do not commit credentials.
+                    </p>
+                    <h2 id="template-content">Review template content</h2>
+                    <p>Keep page text escaped when inserting values into Pug templates. Use escaped interpolation or escaped buffered code rather than unescaped HTML insertion for untrusted text. Do not execute templates supplied by untrusted users. Review URLs separately instead of accepting arbitrary user-controlled link or script targets.</p>
+                    <p>The documentation is authored from trusted local source files. If you later add forms, user input, or a backend, assess that new trust boundary separately; these pages do not implement input validation or server-side access control.</p>
+                    <h2 id="dependencies">Review dependencies and third-party assets</h2>
+                    <p>Keep the lockfile in version control and review dependency changes explicitly. Installation warnings and successful builds answer different questions. Assess dependency advisories and test upgrades on a separate branch; do not apply forced upgrades without reviewing their impact.</p>
+                    <p>The landing page references externally hosted images and a Bootstrap script. Review those providers, resource URLs, and any integrity or hosting policy before deployment. The documentation itself uses the locally generated stylesheet and favicon and requires no external script.</p>
+                    <h2 id="preview">Keep development previews private</h2>
+                    <p>Treat BrowserSync and the source watcher as development tools, not a production hosting setup. Do not expose their ports to the public internet. Use local access and review your machine's network restrictions; stop the processes when finished. A printed local address is not proof that other network interfaces cannot reach a service.</p>
+                    <h2 id="release-checks">Before publishing</h2>
+                    <ul>
+                        <li>Inspect the generated output for unintended files and sensitive values.</li>
+                        <li>Run the build and documentation checks, then review actual deployed links and resource requests.</li>
+                        <li>Configure HTTPS and access policies at the chosen host as appropriate for your deployment.</li>
+                        <li>Keep a known-good previous deployment so you can restore it if a release causes problems.</li>
+                    </ul>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

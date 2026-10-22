@@ -1,0 +1,32 @@
+block variables
+- const pages = [{file: 'index', label: 'Overview'}, {file: 'getting-started', label: 'Getting started'}, {file: 'api-reference', label: 'API reference'}, {file: 'configuration', label: 'Configuration'}, {file: 'security', label: 'Security'}, {file: 'migration', label: 'Migration'}];
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content=description)
+        title= pageTitle + ' | Full Width Pics documentation'
+        link(rel='icon', type='image/x-icon', href='../assets/favicon.ico')
+        link(rel='stylesheet', href='../css/styles.css')
+    body
+        a.visually-hidden-focusable.d-inline-block.p-3(href='#main-content') Skip to content
+        header.bg-dark.text-white.py-4
+            .container
+                a.text-white.fs-4.fw-bold(href='index.html') Full Width Pics documentation
+                p.mb-0.mt-2 A source and build guide for paulweezydesign/f
+        .container.py-4
+            .row.g-4
+                .col-lg-3
+                    nav(aria-label='Documentation')
+                        ul.nav.nav-pills.flex-column
+                            each page in pages
+                                li.nav-item
+                                    a.nav-link(class=page.file === currentPage ? 'active' : null, aria-current=page.file === currentPage ? 'page' : null, href=page.file + '.html')= page.label
+                        a.d-inline-block.mt-3(href='../index.html') Back to the template
+                main.col-lg-9#main-content(tabindex='-1')
+                    h1.mb-4= pageTitle
+                    block content
+        footer.border-top.py-4
+            .container
+                p.mb-0 Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Customize the static template through Pug, SCSS, JavaScript, and asset source files." />
+        <title>Configuration | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">Configuration</h1>
+                    <h2 id="model">Configuration model</h2>
+                    <p>There is no runtime environment-variable configuration in this repository. Customization happens by editing source files and rebuilding. Do not add credentials to page variables or assume a build-time value will remain private in generated HTML.</p>
+                    <h2 id="content">Page content and metadata</h2>
+                    <p>
+                        Edit
+                        <code>src/pug/index.pug</code>
+                        to change landing-page headings, navigation, imagery, page title, and description. Its background images and portrait currently reference remote providers; replace those URLs or add local images deliberately.
+                    </p>
+                    <p>
+                        Documentation pages live in
+                        <code>src/pug/docs/</code>
+                        . Each extends
+                        <code>../layouts/docs</code>
+                        and sets
+                        <code>pageTitle</code>
+                        ,
+                        <code>currentPage</code>
+                        , and
+                        <code>description</code>
+                        in its variables block. The common navigation and page structure live in
+                        <code>src/pug/layouts/docs.pug</code>
+                        .
+                    </p>
+                    <p>
+                        When adding a guide, add its filename and label to the layout's
+                        <code>pages</code>
+                        list. Use the filename without
+                        <code>.pug</code>
+                        as
+                        <code>currentPage</code>
+                        so the active navigation item is correct. Restart the development watcher after adding pages.
+                    </p>
+                    <h2 id="styles">Styles and assets</h2>
+                    <p>
+                        Edit
+                        <code>src/scss/styles.scss</code>
+                        to customize styles. It imports Bootstrap and defines the template's
+                        <code>.bg-image-full</code>
+                        background helper. Keep documentation-specific overrides scoped so they do not unexpectedly change the landing page.
+                    </p>
+                    <p>
+                        Place images and icons under
+                        <code>src/assets/</code>
+                        ; the build copies that folder to
+                        <code>dist/assets/</code>
+                        . A documentation page can reference a local file as
+                        <code>../assets/example.png</code>
+                        , while the landing page uses
+                        <code>assets/example.png</code>
+                        . Create the actual asset before adding the reference.
+                    </p>
+                    <p>
+                        Custom browser behavior belongs under
+                        <code>src/js/</code>
+                        . Documentation navigation works without JavaScript; no extra script is required for these pages.
+                    </p>
+                    <h2 id="build-settings">Build and preview settings</h2>
+                    <p>
+                        <code>package.json</code>
+                        defines the npm commands and template metadata used in generated banners. Build implementations are in
+                        <code>scripts/build-*.js</code>
+                        and
+                        <code>scripts/render-*.js</code>
+                        .
+                        <code>scripts/start.js</code>
+                        launches BrowserSync against
+                        <code>dist/</code>
+                        alongside
+                        <code>scripts/sb-watch.js</code>
+                        . Changes to these scripts require restarting the preview.
+                    </p>
+                    <p>
+                        There is no separate documentation build or base-path setting. Use relative links such as
+                        <code>getting-started.html</code>
+                        between documentation pages and
+                        <code>../index.html</code>
+                        to return to the template. Keep generated directories together when mounting the output below a subdirectory.
+                    </p>
+                    <h2 id="verification">Verify a customization</h2>
+                    <pre class="bg-light p-3"><code>npm run build
+npm run test:docs</code></pre>
+                    <p>Then preview the affected pages at both narrow and wide widths. Automated link checks do not replace reviewing content, appearance, or keyboard navigation.</p>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

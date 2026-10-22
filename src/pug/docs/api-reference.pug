@@ -1,0 +1,42 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'API reference';
+    - const currentPage = 'api-reference';
+    - const description = 'Reference for the template build commands and source/output paths; no public HTTP or JavaScript API is provided.';
+
+block content
+    h2#api-scope Public API scope
+    p This template exposes no HTTP API or public JavaScript API. #[code src/js/scripts.js] is intentionally empty apart from comments. There are no service endpoints, authentication tokens, or request/response schemas to configure.
+    p The reference below describes the npm build interface and file layout. Functions inside #[code scripts/] are implementation details, not a stable library API.
+    h2#commands npm commands
+    p Run these commands from the repository root after #[code npm ci].
+    dl
+        dt #[code npm run build]
+        dd Cleans the output, then builds Pug, SCSS, scripts, and assets in sequence.
+        dt #[code npm run clean]
+        dd Deletes #[code dist/]. Back up any direct output edits before running it.
+        dt #[code npm run build:pug]
+        dd Compiles Pug pages into HTML; layouts and include/mixin files are excluded as standalone pages. This does not clean stale output or build CSS/assets.
+        dt #[code npm run build:scss]
+        dd Compiles #[code src/scss/styles.scss], including Bootstrap, into #[code dist/css/styles.css].
+        dt #[code npm run build:scripts]
+        dd Copies #[code src/js/] into #[code dist/js/] and adds the template banner to #[code scripts.js].
+        dt #[code npm run build:assets]
+        dd Copies #[code src/assets/] into #[code dist/assets/].
+        dt #[code npm start]
+        dd Builds, watches source files, and runs a local BrowserSync preview.
+        dt #[code npm run start:debug]
+        dd Builds and launches the project's debug-mode preview workflow.
+        dt #[code npm run test:docs]
+        dd Checks existing generated documentation. Run a build first after changing source.
+        dt #[code npm test]
+        dd Builds the site and runs the documentation check.
+    h2#paths Source and output contracts
+    ul
+        li #[code src/pug/index.pug] becomes #[code dist/index.html].
+        li #[code src/pug/docs/*.pug] becomes corresponding #[code dist/docs/*.html] files.
+        li #[code src/pug/layouts/docs.pug] is shared by documentation pages and does not become a standalone page.
+        li #[code src/scss/styles.scss] becomes #[code dist/css/styles.css].
+        li #[code src/js/] and #[code src/assets/] are copied into the matching output directories.
+    p Preserve this output structure when publishing. The complete build is the supported way to remove stale generated files after deleting or renaming a page.

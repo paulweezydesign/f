@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Install, preview, and build the Full Width Pics template from source." />
+        <title>Getting started | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">Getting started</h1>
+                    <h2 id="prerequisites">Prerequisites</h2>
+                    <p>
+                        Obtain a local checkout of paulweezydesign/f and open a terminal in its root directory, next to
+                        <code>package.json</code>
+                        . Installation and the baseline build were verified with Node.js 22.23.2 and npm 10.9.8. This records the tested environment, not a claim that every Node.js version is supported.
+                    </p>
+                    <p>
+                        The first installation needs access to the npm registry. Keep
+                        <code>package-lock.json</code>
+                        so installs use the repository's locked dependency versions.
+                    </p>
+                    <h2 id="quick-start">Quick start</h2>
+                    <pre class="bg-light p-3"><code>npm ci
+npm start</code></pre>
+                    <p>
+                        <code>npm start</code>
+                        builds the site, starts the source watcher, and launches BrowserSync against
+                        <code>dist/</code>
+                        . Open the local preview address printed in your terminal, then follow the Documentation link or append
+                        <code>/docs/index.html</code>
+                        to that address. Stop the preview with Ctrl+C.
+                    </p>
+                    <p>This project uses an older locked toolchain. Review installation warnings rather than assuming that a successful build means every dependency is secure. Do not run force upgrades as part of ordinary setup.</p>
+                    <h2 id="editing">Edit the source</h2>
+                    <p>
+                        Change
+                        <code>src/pug/index.pug</code>
+                        for the landing page,
+                        <code>src/pug/docs/</code>
+                        for these guides, or
+                        <code>src/scss/styles.scss</code>
+                        for styles. Existing pages rebuild when their source changes. Restart
+                        <code>npm start</code>
+                        after adding new Pug pages so later shared-layout edits include them in the watcher's page registry.
+                    </p>
+                    <p>
+                        Do not keep your only copy of changes in
+                        <code>dist/</code>
+                        : the next full build deletes and recreates that directory. See the
+                        <a href="migration.html">migration guide</a>
+                        if you already edited generated files.
+                    </p>
+                    <h2 id="build">Build and validate</h2>
+                    <pre class="bg-light p-3"><code>npm run build
+npm run test:docs</code></pre>
+                    <p>
+                        The full build cleans
+                        <code>dist/</code>
+                        and compiles all pages, styles, scripts, and assets. The documentation check validates the generated pages and local links.
+                        <code>npm test</code>
+                        runs the build and documentation check together.
+                    </p>
+                    <h2 id="publish">Publish</h2>
+                    <p>
+                        Preview the output, then upload the entire
+                        <code>dist/</code>
+                        directory to your static host. Keep
+                        <code>docs/</code>
+                        ,
+                        <code>css/</code>
+                        ,
+                        <code>js/</code>
+                        , and
+                        <code>assets/</code>
+                        in their generated locations. Review both the template and documentation at the actual deployment path before making the site public.
+                    </p>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

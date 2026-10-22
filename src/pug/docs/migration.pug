@@ -1,0 +1,30 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'Migration guide';
+    - const currentPage = 'migration';
+    - const description = 'Move direct edits in generated output back into maintained source and verify a rebuild.';
+
+block content
+    h2#scope Migration scope
+    p This guide covers moving direct #[code dist/] edits into source-controlled inputs. The repository history available for this documentation contains only its initial template commit; it does not establish a sequence of product releases. No version-to-version migration instructions or compatibility guarantees can be inferred from that history.
+    h2#backup Back up before rebuilding
+    p Copy your current output and source to a safe location outside #[code dist/] before running a build or #[code npm start]. Preserve a known-good deployed copy as well. Record screenshots or expected behavior for your customizations so you can compare the rebuilt site.
+    p #[code npm run clean] deletes #[code dist/], and both the full build and startup workflow invoke the build. Do not rely on an uncommitted change inside generated output as your only backup.
+    h2#source-mapping Move changes to source
+    ol
+        li Compare your edited #[code dist/index.html] with #[code src/pug/index.pug]. Translate content, metadata, and markup changes into Pug rather than copying generated HTML over the source.
+        li Move custom style rules from #[code dist/css/styles.css] to #[code src/scss/styles.scss]. Do not copy the generated Bootstrap stylesheet wholesale into SCSS; retain its existing import and port only your intended overrides.
+        li Move custom browser code from #[code dist/js/scripts.js] into #[code src/js/scripts.js], excluding the generated copyright banner.
+        li Copy custom assets from your backup into #[code src/assets/], and update source references to their generated locations.
+        li For documentation changes, edit the corresponding file under #[code src/pug/docs/] or the shared #[code src/pug/layouts/docs.pug], not #[code dist/docs/].
+    h2#verify Rebuild and compare
+    pre.bg-light.p-3
+        code.
+            npm ci
+            npm run build
+            npm run test:docs
+    p Compare the new output against your backup for intended content and behavior, not just byte equality: formatting and generated banners can differ. Preview the template and all documentation pages, including navigation, local assets, narrow layouts, and your eventual hosting path.
+    p Once verified, commit the maintained source and corresponding generated output together. Retain your backup until the replacement deployment is confirmed working.
+    h2#rollback Roll back safely
+    p If verification fails, do not publish the new output. Restore the previous source revision through your normal version-control workflow and rebuild, or restore the saved known-good output to your host. Investigate differences against the backup before retrying. No database or service migration is involved in this static-site workflow.
