@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Move direct edits in generated output back into maintained source and verify a rebuild." />
+        <title>Migration guide | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">Migration guide</h1>
+                    <h2 id="scope">Migration scope</h2>
+                    <p>
+                        This guide covers moving direct
+                        <code>dist/</code>
+                        edits into source-controlled inputs. The repository history available for this documentation contains only its initial template commit; it does not establish a sequence of product releases. No version-to-version migration instructions or compatibility guarantees can be inferred from that history.
+                    </p>
+                    <h2 id="backup">Back up before rebuilding</h2>
+                    <p>
+                        Copy your current output and source to a safe location outside
+                        <code>dist/</code>
+                        before running a build or
+                        <code>npm start</code>
+                        . Preserve a known-good deployed copy as well. Record screenshots or expected behavior for your customizations so you can compare the rebuilt site.
+                    </p>
+                    <p>
+                        <code>npm run clean</code>
+                        deletes
+                        <code>dist/</code>
+                        , and both the full build and startup workflow invoke the build. Do not rely on an uncommitted change inside generated output as your only backup.
+                    </p>
+                    <h2 id="source-mapping">Move changes to source</h2>
+                    <ol>
+                        <li>
+                            Compare your edited
+                            <code>dist/index.html</code>
+                            with
+                            <code>src/pug/index.pug</code>
+                            . Translate content, metadata, and markup changes into Pug rather than copying generated HTML over the source.
+                        </li>
+                        <li>
+                            Move custom style rules from
+                            <code>dist/css/styles.css</code>
+                            to
+                            <code>src/scss/styles.scss</code>
+                            . Do not copy the generated Bootstrap stylesheet wholesale into SCSS; retain its existing import and port only your intended overrides.
+                        </li>
+                        <li>
+                            Move custom browser code from
+                            <code>dist/js/scripts.js</code>
+                            into
+                            <code>src/js/scripts.js</code>
+                            , excluding the generated copyright banner.
+                        </li>
+                        <li>
+                            Copy custom assets from your backup into
+                            <code>src/assets/</code>
+                            , and update source references to their generated locations.
+                        </li>
+                        <li>
+                            For documentation changes, edit the corresponding file under
+                            <code>src/pug/docs/</code>
+                            or the shared
+                            <code>src/pug/layouts/docs.pug</code>
+                            , not
+                            <code>dist/docs/</code>
+                            .
+                        </li>
+                    </ol>
+                    <h2 id="verify">Rebuild and compare</h2>
+                    <pre class="bg-light p-3"><code>npm ci
+npm run build
+npm run test:docs</code></pre>
+                    <p>Compare the new output against your backup for intended content and behavior, not just byte equality: formatting and generated banners can differ. Preview the template and all documentation pages, including navigation, local assets, narrow layouts, and your eventual hosting path.</p>
+                    <p>Once verified, commit the maintained source and corresponding generated output together. Retain your backup until the replacement deployment is confirmed working.</p>
+                    <h2 id="rollback">Roll back safely</h2>
+                    <p>If verification fails, do not publish the new output. Restore the previous source revision through your normal version-control workflow and rebuild, or restore the saved known-good output to your host. Investigate differences against the backup before retrying. No database or service migration is involved in this static-site workflow.</p>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

@@ -24,11 +24,29 @@ To begin using this template, choose one of the following options to get started
 * Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-full-width-pics.git`
 * [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-full-width-pics)
 
+## Documentation
+
+This fork includes a documentation site for the template, covering getting started, the build interface (there is no application API), configuration, security practices, and migrating direct output edits back to source.
+
+From a checkout of this repository, using the tested Node.js 22.23.2 and npm 10.9.8 environment:
+
+```sh
+npm ci
+npm test
+npm start
+```
+
+Follow **Documentation** from the local preview address printed by BrowserSync, or open `dist/docs/index.html` after building. Stop the preview with Ctrl+C.
+
+Edit guides in `src/pug/docs/` and their shared layout/navigation in `src/pug/layouts/docs.pug`. Restart the watcher after adding pages so shared-layout edits rebuild them too. Run `npm run test:docs` to check existing output, or `npm test` to rebuild and check all six guides, navigation, assets, and fragment targets. The checker also tests its broken-link detection with temporary fixtures. Review prose, keyboard navigation, and narrow/wide layouts separately.
+
+Publish the **entire `dist/` directory**, preserving its structure; the docs use relative links for subdirectory hosting. Commit source and regenerated output together. No hosting account or automated deployment is configured here. Installation warnings from the older locked dependencies should be reviewed separately; passing documentation checks is not a security audit.
+
 ## Usage
 
 ### Basic Usage
 
-After downloading, simply edit the HTML and CSS files included with `dist` directory. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+For a standalone downloaded copy, you can edit the HTML and CSS in `dist` and open `dist/index.html` in your browser. In a source checkout, prefer editing `src`: `npm run build` and `npm start` delete and regenerate `dist`, overwriting direct edits. Back up existing customizations before rebuilding and follow the documentation's migration guide to move them into source.
 
 ### Advanced Usage
 

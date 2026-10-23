@@ -1,0 +1,25 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'Documentation overview';
+    - const currentPage = 'index';
+    - const description = 'Learn to build, customize, and publish the Full Width Pics static template in paulweezydesign/f.';
+
+block content
+    p.lead This site documents the Full Width Pics static landing-page template in paulweezydesign/f. It is not documentation for a backend service or a separate application.
+    h2#workflow Source and build workflow
+    p Edit Pug pages, SCSS styles, JavaScript, and assets under #[code src/]. The build generates publishable HTML, CSS, JavaScript, and assets under #[code dist/]. Generated files are tracked in this repository, but rebuilding replaces direct edits to them.
+    pre.bg-light.p-3
+        code.
+            npm ci
+            npm run build
+    h2#guides Choose a guide
+    ul
+        li #[a(href='getting-started.html') Getting started]: install dependencies, preview locally, and create the publishable output.
+        li #[a(href='api-reference.html') API reference]: understand the available build commands and source/output interfaces; there is no public application API.
+        li #[a(href='configuration.html') Configuration]: customize content, styles, metadata, and assets in their source files.
+        li #[a(href='security.html') Security]: review what goes into a publicly served static site and how to work with the development tools.
+        li #[a(href='migration.html') Migration]: move direct output edits back into maintained source without inventing release history.
+    h2#publishing Publish the generated site
+    p Publish the entire #[code dist/] directory to your static host, preserving its directory structure. The documentation entry is #[code docs/index.html] within that output. Documentation links are relative, so they do not require a particular hostname or root path.
+    p Hosting-account setup and automatic deployment are not included in this repository. Preview the generated files before replacing an existing deployment.

@@ -1,0 +1,26 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'Security best practices';
+    - const currentPage = 'security';
+    - const description = 'Contributor precautions for public static output, dependencies, external assets, and local previews.';
+
+block content
+    p These are contributor practices for this static template, not a security certification or an audit of its dependencies. There is no application authentication layer in this repository.
+    h2#public-output Treat output as public
+    p Review everything in #[code dist/] before publishing. Do not put passwords, private keys, access tokens, or confidential material in Pug variables, JavaScript, CSS, or assets. The build copies the assets and JavaScript directories; it does not provide a secret-management boundary.
+    p Publish the generated #[code dist/] directory, not the repository root. Keep private deployment configuration outside public output and do not commit credentials.
+    h2#template-content Review template content
+    p Keep page text escaped when inserting values into Pug templates. Use escaped interpolation or escaped buffered code rather than unescaped HTML insertion for untrusted text. Do not execute templates supplied by untrusted users. Review URLs separately instead of accepting arbitrary user-controlled link or script targets.
+    p The documentation is authored from trusted local source files. If you later add forms, user input, or a backend, assess that new trust boundary separately; these pages do not implement input validation or server-side access control.
+    h2#dependencies Review dependencies and third-party assets
+    p Keep the lockfile in version control and review dependency changes explicitly. Installation warnings and successful builds answer different questions. Assess dependency advisories and test upgrades on a separate branch; do not apply forced upgrades without reviewing their impact.
+    p The landing page references externally hosted images and a Bootstrap script. Review those providers, resource URLs, and any integrity or hosting policy before deployment. The documentation itself uses the locally generated stylesheet and favicon and requires no external script.
+    h2#preview Keep development previews private
+    p Treat BrowserSync and the source watcher as development tools, not a production hosting setup. Do not expose their ports to the public internet. Use local access and review your machine's network restrictions; stop the processes when finished. A printed local address is not proof that other network interfaces cannot reach a service.
+    h2#release-checks Before publishing
+    ul
+        li Inspect the generated output for unintended files and sensitive values.
+        li Run the build and documentation checks, then review actual deployed links and resource requests.
+        li Configure HTTPS and access policies at the chosen host as appropriate for your deployment.
+        li Keep a known-good previous deployment so you can restore it if a release causes problems.

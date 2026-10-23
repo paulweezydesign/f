@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Reference for the template build commands and source/output paths; no public HTTP or JavaScript API is provided." />
+        <title>API reference | Full Width Pics documentation</title>
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+        <link rel="stylesheet" href="../css/styles.css" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable d-inline-block p-3" href="#main-content">Skip to content</a>
+        <header class="bg-dark text-white py-4">
+            <div class="container">
+                <a class="text-white fs-4 fw-bold" href="index.html">Full Width Pics documentation</a>
+                <p class="mb-0 mt-2">A source and build guide for paulweezydesign/f</p>
+            </div>
+        </header>
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <nav aria-label="Documentation">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Overview</a></li>
+                            <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting started</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="api-reference.html">API reference</a></li>
+                            <li class="nav-item"><a class="nav-link" href="configuration.html">Configuration</a></li>
+                            <li class="nav-item"><a class="nav-link" href="security.html">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="migration.html">Migration</a></li>
+                        </ul>
+                        <a class="d-inline-block mt-3" href="../index.html">Back to the template</a>
+                    </nav>
+                </div>
+                <main class="col-lg-9" id="main-content" tabindex="-1">
+                    <h1 class="mb-4">API reference</h1>
+                    <h2 id="api-scope">Public API scope</h2>
+                    <p>
+                        This template exposes no HTTP API or public JavaScript API.
+                        <code>src/js/scripts.js</code>
+                        is intentionally empty apart from comments. There are no service endpoints, authentication tokens, or request/response schemas to configure.
+                    </p>
+                    <p>
+                        The reference below describes the npm build interface and file layout. Functions inside
+                        <code>scripts/</code>
+                        are implementation details, not a stable library API.
+                    </p>
+                    <h2 id="commands">npm commands</h2>
+                    <p>
+                        Run these commands from the repository root after
+                        <code>npm ci</code>
+                        .
+                    </p>
+                    <dl>
+                        <dt><code>npm run build</code></dt>
+                        <dd>Cleans the output, then builds Pug, SCSS, scripts, and assets in sequence.</dd>
+                        <dt><code>npm run clean</code></dt>
+                        <dd>
+                            Deletes
+                            <code>dist/</code>
+                            . Back up any direct output edits before running it.
+                        </dd>
+                        <dt><code>npm run build:pug</code></dt>
+                        <dd>Compiles Pug pages into HTML; layouts and include/mixin files are excluded as standalone pages. This does not clean stale output or build CSS/assets.</dd>
+                        <dt><code>npm run build:scss</code></dt>
+                        <dd>
+                            Compiles
+                            <code>src/scss/styles.scss</code>
+                            , including Bootstrap, into
+                            <code>dist/css/styles.css</code>
+                            .
+                        </dd>
+                        <dt><code>npm run build:scripts</code></dt>
+                        <dd>
+                            Copies
+                            <code>src/js/</code>
+                            into
+                            <code>dist/js/</code>
+                            and adds the template banner to
+                            <code>scripts.js</code>
+                            .
+                        </dd>
+                        <dt><code>npm run build:assets</code></dt>
+                        <dd>
+                            Copies
+                            <code>src/assets/</code>
+                            into
+                            <code>dist/assets/</code>
+                            .
+                        </dd>
+                        <dt><code>npm start</code></dt>
+                        <dd>Builds, watches source files, and runs a local BrowserSync preview.</dd>
+                        <dt><code>npm run start:debug</code></dt>
+                        <dd>Builds and launches the project's debug-mode preview workflow.</dd>
+                        <dt><code>npm run test:docs</code></dt>
+                        <dd>Checks existing generated documentation. Run a build first after changing source.</dd>
+                        <dt><code>npm test</code></dt>
+                        <dd>Builds the site and runs the documentation check.</dd>
+                    </dl>
+                    <h2 id="paths">Source and output contracts</h2>
+                    <ul>
+                        <li>
+                            <code>src/pug/index.pug</code>
+                            becomes
+                            <code>dist/index.html</code>
+                            .
+                        </li>
+                        <li>
+                            <code>src/pug/docs/*.pug</code>
+                            becomes corresponding
+                            <code>dist/docs/*.html</code>
+                            files.
+                        </li>
+                        <li>
+                            <code>src/pug/layouts/docs.pug</code>
+                            is shared by documentation pages and does not become a standalone page.
+                        </li>
+                        <li>
+                            <code>src/scss/styles.scss</code>
+                            becomes
+                            <code>dist/css/styles.css</code>
+                            .
+                        </li>
+                        <li>
+                            <code>src/js/</code>
+                            and
+                            <code>src/assets/</code>
+                            are copied into the matching output directories.
+                        </li>
+                    </ul>
+                    <p>Preserve this output structure when publishing. The complete build is the supported way to remove stale generated files after deleting or renaming a page.</p>
+                </main>
+            </div>
+        </div>
+        <footer class="border-top py-4">
+            <div class="container"><p class="mb-0">Documentation for the Full Width Pics static template. Original template by Start Bootstrap, released under the MIT license.</p></div>
+        </footer>
+    </body>
+</html>

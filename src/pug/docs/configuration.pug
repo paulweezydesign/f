@@ -1,0 +1,27 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'Configuration';
+    - const currentPage = 'configuration';
+    - const description = 'Customize the static template through Pug, SCSS, JavaScript, and asset source files.';
+
+block content
+    h2#model Configuration model
+    p There is no runtime environment-variable configuration in this repository. Customization happens by editing source files and rebuilding. Do not add credentials to page variables or assume a build-time value will remain private in generated HTML.
+    h2#content Page content and metadata
+    p Edit #[code src/pug/index.pug] to change landing-page headings, navigation, imagery, page title, and description. Its background images and portrait currently reference remote providers; replace those URLs or add local images deliberately.
+    p Documentation pages live in #[code src/pug/docs/]. Each extends #[code ../layouts/docs] and sets #[code pageTitle], #[code currentPage], and #[code description] in its variables block. The common navigation and page structure live in #[code src/pug/layouts/docs.pug].
+    p When adding a guide, add its filename and label to the layout's #[code pages] list. Use the filename without #[code .pug] as #[code currentPage] so the active navigation item is correct. Restart the development watcher after adding pages.
+    h2#styles Styles and assets
+    p Edit #[code src/scss/styles.scss] to customize styles. It imports Bootstrap and defines the template's #[code .bg-image-full] background helper. Keep documentation-specific overrides scoped so they do not unexpectedly change the landing page.
+    p Place images and icons under #[code src/assets/]; the build copies that folder to #[code dist/assets/]. A documentation page can reference a local file as #[code ../assets/example.png], while the landing page uses #[code assets/example.png]. Create the actual asset before adding the reference.
+    p Custom browser behavior belongs under #[code src/js/]. Documentation navigation works without JavaScript; no extra script is required for these pages.
+    h2#build-settings Build and preview settings
+    p #[code package.json] defines the npm commands and template metadata used in generated banners. Build implementations are in #[code scripts/build-*.js] and #[code scripts/render-*.js]. #[code scripts/start.js] launches BrowserSync against #[code dist/] alongside #[code scripts/sb-watch.js]. Changes to these scripts require restarting the preview.
+    p There is no separate documentation build or base-path setting. Use relative links such as #[code getting-started.html] between documentation pages and #[code ../index.html] to return to the template. Keep generated directories together when mounting the output below a subdirectory.
+    h2#verification Verify a customization
+    pre.bg-light.p-3
+        code.
+            npm run build
+            npm run test:docs
+    p Then preview the affected pages at both narrow and wide widths. Automated link checks do not replace reviewing content, appearance, or keyboard navigation.

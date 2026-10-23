@@ -1,0 +1,29 @@
+extends ../layouts/docs
+
+block variables
+    - const pageTitle = 'Getting started';
+    - const currentPage = 'getting-started';
+    - const description = 'Install, preview, and build the Full Width Pics template from source.';
+
+block content
+    h2#prerequisites Prerequisites
+    p Obtain a local checkout of paulweezydesign/f and open a terminal in its root directory, next to #[code package.json]. Installation and the baseline build were verified with Node.js 22.23.2 and npm 10.9.8. This records the tested environment, not a claim that every Node.js version is supported.
+    p The first installation needs access to the npm registry. Keep #[code package-lock.json] so installs use the repository's locked dependency versions.
+    h2#quick-start Quick start
+    pre.bg-light.p-3
+        code.
+            npm ci
+            npm start
+    p #[code npm start] builds the site, starts the source watcher, and launches BrowserSync against #[code dist/]. Open the local preview address printed in your terminal, then follow the Documentation link or append #[code /docs/index.html] to that address. Stop the preview with Ctrl+C.
+    p This project uses an older locked toolchain. Review installation warnings rather than assuming that a successful build means every dependency is secure. Do not run force upgrades as part of ordinary setup.
+    h2#editing Edit the source
+    p Change #[code src/pug/index.pug] for the landing page, #[code src/pug/docs/] for these guides, or #[code src/scss/styles.scss] for styles. Existing pages rebuild when their source changes. Restart #[code npm start] after adding new Pug pages so later shared-layout edits include them in the watcher's page registry.
+    p Do not keep your only copy of changes in #[code dist/]: the next full build deletes and recreates that directory. See the #[a(href='migration.html') migration guide] if you already edited generated files.
+    h2#build Build and validate
+    pre.bg-light.p-3
+        code.
+            npm run build
+            npm run test:docs
+    p The full build cleans #[code dist/] and compiles all pages, styles, scripts, and assets. The documentation check validates the generated pages and local links. #[code npm test] runs the build and documentation check together.
+    h2#publish Publish
+    p Preview the output, then upload the entire #[code dist/] directory to your static host. Keep #[code docs/], #[code css/], #[code js/], and #[code assets/] in their generated locations. Review both the template and documentation at the actual deployment path before making the site public.
