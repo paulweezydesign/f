@@ -47,6 +47,25 @@ Clone the source files of the theme and navigate into the theme's root directory
 
 You must have npm installed in order to use this build environment.
 
+## Testing
+
+The project ships integration tests for the build pipeline (Jest on Node.js 18 or later; CI uses Node.js 22). The suite runs the real compilers — Pug, Sass/PostCSS, the script and asset copy steps — and asserts the artifacts they produce.
+
+* `npm test` runs the full test suite
+* `npm run test:coverage` runs the suite with coverage collection
+
+### How it works
+
+Each run copies the project into a throwaway temporary directory, so the tests never write to your working copy's `src` or `dist` directories, and coverage reports are written back to `coverage/` in the project root (HTML and LCOV reports land in `coverage/lcov-report/`).
+
+The suite covers:
+
+* a full `npm run build` from a clean state, including removal of stale `dist` artifacts and repeatability of a second build
+* the Pug, Sass/PostCSS, scripts, and assets renderers, the `build:*` entrypoints, and the `clean` script
+* the build contract for each artifact: valid HTML with the expected title and asset references, compiled CSS with Bootstrap output, and the license banner prepended to `scripts.js`
+
+Continuous Integration runs the same suite with coverage on every pull request and every push to `master` via the workflow in `.github/workflows/ci.yml` (Node.js 22, Ubuntu). There are currently no coverage percentage gates and no authentication flows to test — the template is a static site.
+
 ## About
 
 Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
